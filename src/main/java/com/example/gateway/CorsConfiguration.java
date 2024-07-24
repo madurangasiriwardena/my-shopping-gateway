@@ -29,8 +29,7 @@ public class CorsConfiguration {
     public WebFilter corsFilter() {
         return (ServerWebExchange ctx, WebFilterChain chain) -> {
             ServerHttpRequest request = ctx.getRequest();
-            if (CorsUtils.isPreFlightRequest(request) || request.getPath().toString().startsWith("/profile")) {
-//            if (CorsUtils.isCorsRequest(request)) {
+            if (CorsUtils.isPreFlightRequest(request)) {
                 ServerHttpResponse response = ctx.getResponse();
                 HttpHeaders headers = response.getHeaders();
                 headers.add("Access-Control-Allow-Origin", appUrl);
