@@ -41,7 +41,7 @@ public class CustomHeaderRoutePredicateFactory extends AbstractRoutePredicateFac
             try {
                 JsonNode node = mapper.readTree(payload);
                 if (node.get("resident_region") == null) {
-                    return false;
+                    return config.getRegionName() == null;
                 }
                 String region = node.get("resident_region").asText();
                 return region != null && region.equals(config.getRegionName());
